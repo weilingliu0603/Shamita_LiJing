@@ -8,18 +8,13 @@ def get_db():
     db.row_factory= sqlite3.Row
     return db
 
-
 @app.route('/')
-
 def home():
     return flask.render_template('indexnew.html')
 
-
 @app.route('/newsdetails')
-
 def newsdetails():
-    return flask.render_template('news.html')
-    
+    return flask.render_template('news.html')    
 
 @app.route('/add_member')
 def add_member():
@@ -45,8 +40,6 @@ def added():
     db.commit()
     db.close()
     return flask.render_template('memberadded.html',n=name)
-
-
  
 @app.route('/add_new_transaction')
 def add_new_transaction():
@@ -57,7 +50,6 @@ def add_new_transaction():
         invoice= line['seq']
     invoice+=1
     return flask.render_template('add_new_transaction.html',invoice=invoice)
-
 
 @app.route('/added2', methods=['POST'])
 
@@ -74,38 +66,23 @@ def added2():
     db.commit()
     db.close()
     return flask.render_template('transactionadded.html', n=invoicen)
-    
-       
-
-    
-
-
 
 @app.route('/daily_transaction')
-
 def view_daily_transaction():
     return flask.render_template('daily_transaction.html')
 
 @app.route('/viewed_d_t', methods=['POST'])
-
 def viewed_d_t():
     db=get_db()
     rows=db.execute("SELECT * FROM Invoice WHERE date=?",[flask.request.form['date']]).fetchall()
     db.close()
     return flask.render_template('view_d_t.html',rows=rows)
-    
-
-
 
 @app.route('/monthly_revenue')
-
 def view_monthly_revenue():
     return flask.render_template('monthly_revenue.html')
 
-
-
 @app.route('/viewed_m_r', methods=['POST'])
-
 
 def viewed_m_r():
     db=get_db()
@@ -123,24 +100,16 @@ def viewed_m_r():
     return flask.render_template('view_m_r.html',result=result)
 
 @app.route('/member_transaction')
-
 def view_member_transaction():
     return flask.render_template('member_transaction.html')
 
-
-
 @app.route('/viewed_m_t',methods=['POST'])
-
 def viewed_m_t():
     db=get_db()
     mem_id=flask.request.form["memberID"]
     m_id=int(mem_id)
     rows=db.execute("SELECT * FROM Invoice,Invoice_detail WHERE Invoice.memberID=(?) AND Invoice_detail.invoiceNo=Invoice.invoiceNo",(m_id,)).fetchall()
     return flask.render_template('view_m_t.html',rows=rows)
-
-
-
-
 
 @app.route("/update_address")
 def update_address():
@@ -156,9 +125,6 @@ def updated_address():#update the new address
     db.close()
     return flask.render_template("updated_address.html",ID=ID)
 
-
-
-
 @app.route("/update_email")
 def update_email():
     return flask.render_template('update_email.html')
@@ -172,26 +138,6 @@ def updated_email():
     db.commit()
     db.close()
     return flask.render_template("updated_email.html",ID=ID)
-    
-    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-if __name__== '__main__':
-    app.run(port =1230, debug=True)
-
-app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True, use_reloader=True)
