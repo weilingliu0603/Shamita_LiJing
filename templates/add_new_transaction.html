@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+<img src="{{url_for('static', filename='webpagelogo.png')}}" width="200" height="200" align="left">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<h1><p align=middle><font face="Arial" color="blue">Welcome to Holy Snip&Scissors 
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  width:100%;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.main {
+  margin-top: 30px;
+}
+ 
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+</style>
+</head>
+<body>
+
+<div class="navbar">
+  <a href="{{url_for('home')}}">Home</a>
+  <a href="{{url_for('newsdetails')}}">News</a>
+  <div class="dropdown">
+    <button class="dropbtn">Menu
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="{{url_for('add_member')}}">Add New Member</a>
+	  <a href="{{url_for('add_new_transaction')}}">Add New Transactions</a>
+	  <a href="{{url_for('update_email')}}">Update Email</a>
+	  <a href="{{url_for('update_address')}}">Update Address</a> 
+      <a href="{{url_for('view_daily_transaction')}}">View Daily Transactions</a>
+	  <a href="{{url_for('view_monthly_revenue')}}">View Monthly Sales Revenue</a>
+	  <a href="{{url_for('view_member_transaction')}}">View Member's Transactions</a>
+    </div>
+  </div> 
+</div>
+<head>
+<p> Next Avalaible Invoice No: {{invoice}}</p>
+</head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  color: black;
+  width:350px
+}
+
+</style>
+<body>
+   <form action="{{ url_for('added2') }}" method="POST">
+
+<br><br>
+
+       Invoice No&ensp;&ensp;<input name= 'invoiceNo' value="Enter your InvoiceNo">
+<br><br>
+        Member ID&ensp;&ensp; <input name= 'memberID' value="Enter your Member ID">
+<br><br>
+        Gender&ensp;&ensp;<input name= 'gender' value="Enter your Gender(M/F)">
+<br><br>
+        Date&ensp;&ensp;<input name= 'date' value="Enter the Date(YYYY-MM-DD)">
+<br><br>
+        Name&ensp;&ensp;<input name= 'name' value="Enter the Name">
+<br><br>
+        Service ID&ensp;&ensp;<input name='serviceID' value="Enter the Service ID">
+<br><br>
+        Total Amount&ensp;&ensp;<input name= 'totalAmount' value= "Enter the Total Amount">
+
+<br><br>
+    <input type="submit" value = "Submit">
+	<p>&nbsp;</p>
+    <p>&nbsp;</p>
+    </form>
+
+<table style="float:right" border="0">
+     <tr>
+	    <th>Service ID</th>
+	    <th>Type of Service</th>
+		<th>Price$(Member)</th>
+		<th>Price$(Non-Member)</th>
+	</tr>
+	<tr>
+	     <th>A</th>
+	     <th>Cut(short length)</th>
+		 <th>31.20</th>
+		 <th>35.00</th>
+	</tr>
+	<tr>
+	     <th>B</th>
+	     <th>Cut(medium length)</th>
+		 <th>36.00</th>
+		 <th>40.00</th>
+	</tr>
+	<tr>
+	     <th>C</th>
+	     <th>Cut(long length)</th>
+		 <th>40.50</th>
+		 <th>45.00</th>
+	</tr>
+	<tr>
+	     <th>D</th>
+	     <th>Colour</th>
+		 <th>90.00</th>
+		 <th>100.00</th>
+	</tr>
+	<tr> 
+	     <th>E</th>
+	     <th>Highlight (half head)</th>
+		 <th>135.00</th>
+		 <th>150.00</th>
+	</tr>
+	<tr> 
+	     <th>F</th>
+	     <th>Highlight (full head)</th> 
+		 <th>180.00</th>
+		 <th>200.00</th> 
+	</tr>
+	<tr>
+	     <th>G</th>
+	     <th> Perm</th>
+		 <th>180.00</th>
+		 <th>200.00</th> 
+	</tr>
+	<tr> 
+	     <th>H</th>
+	     <th>Rebonding</th>
+	     <th>162.00</th>
+		 <th>180.00</th>
+	</tr>
+	<tr> 
+	      <th>I</th>
+	      <th>Treament</th>
+          <th>72.00</th>
+		  <th>80.00</th>
+	</tr>
+</table>
+
+
+
+</body>
+
